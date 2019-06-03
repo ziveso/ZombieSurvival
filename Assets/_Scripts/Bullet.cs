@@ -24,9 +24,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        foreach (ContactPoint contact in collision.contacts)
+        if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("Ground"))
         {
-            
+            Destroy(gameObject);
         }
     }
 
