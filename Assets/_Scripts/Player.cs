@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     public float MoveSpeed = 10;
     public float TurnRate = 2f;
 
+    //Bullet asset
+    public GameObject Bullet;
+    public float BulletForce = 100f;
+
     //Attached camera
     private Camera playerCam;
 
@@ -31,6 +35,13 @@ public class Player : MonoBehaviour
 
         playerCam.transform.Rotate(new Vector3(-md.y, 0f, 0f));
         playerCam.transform.rotation.eulerAngles.Set(0f, Mathf.Clamp(transform.rotation.eulerAngles.y, -90f, 90f), 0f);
+
+        //Shooty bits
+        if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
+        {
+            GameObject temp = Instantiate(Bullet, transform.position, transform.rotation);
+            temp.GetComponent<Rigidbody>().velocity = transform.forward * BulletForce;
+        }
 
     }
 
