@@ -62,7 +62,11 @@ public class Player : MonoBehaviour
         //Shooty bits
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), transform.rotation);
+
+
+            Vector3 spanwnBullet = transform.position + (transform.forward * 2);
+            spanwnBullet.y += 0.5f;
+            GameObject temp = Instantiate(Bullet, spanwnBullet, transform.rotation);
             temp.GetComponent<Rigidbody>().velocity = transform.forward * BulletForce;
         }
 
