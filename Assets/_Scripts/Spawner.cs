@@ -18,13 +18,6 @@ public class Spawner : MonoBehaviour
 
         //Fetch the size of the Collider volume
         m_Size = m_Collider.bounds.size * 9 / 10;
-
-        /**
-        Instantiate(zombie, new Vector3(-45, 1, -45), Quaternion.identity);
-        Instantiate(zombie, new Vector3(45, 1, 45), Quaternion.identity);
-        Instantiate(zombie, new Vector3(45, 1, -45), Quaternion.identity);
-        Instantiate(zombie, new Vector3(-45, 1, 45), Quaternion.identity);
-    */
     }
 
     // Update is called once per frame
@@ -48,7 +41,7 @@ public class Spawner : MonoBehaviour
             float z = Random.Range(-z_size, x_size);
 
 
-            Instantiate(zombie, new Vector3(x, 1, z), Quaternion.identity);
+            Instantiate(zombie, new Vector3(x, 0, z), Quaternion.identity);
 
             countdown = spawntime * 60;
         }

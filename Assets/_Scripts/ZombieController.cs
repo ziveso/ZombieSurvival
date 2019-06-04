@@ -7,12 +7,15 @@ public class ZombieController : MonoBehaviour
     private int health;
     private float movespeed = 1f;
     private GameObject player;
-    
+
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         health = 100;
         player = GameObject.Find("Player");
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,6 +23,7 @@ public class ZombieController : MonoBehaviour
     {
         if(health <= 0)
         {
+            animator.SetTrigger("Dead");
             player.GetComponent<Player>().AddKillScore();
             Destroy(gameObject);
         }
