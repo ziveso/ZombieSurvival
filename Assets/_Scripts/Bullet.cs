@@ -25,7 +25,12 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("Ground"))
-        {
+        { 
+            if(collision.gameObject.tag.Equals("Zombie"))
+            {
+                ZombieController zombie = collision.gameObject.GetComponent<ZombieController>() as ZombieController;
+                zombie.takeDamage(50);
+            }
             Destroy(gameObject);
         }
     }

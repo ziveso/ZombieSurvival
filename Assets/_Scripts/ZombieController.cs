@@ -6,7 +6,7 @@ public class ZombieController : MonoBehaviour
 {
     private int health;
     private float movespeed = 1f;
-    public GameObject player;
+    private GameObject player;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,10 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
         float step = movespeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
 
@@ -28,5 +32,14 @@ public class ZombieController : MonoBehaviour
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rstep,1);
 
         transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
+    }
+
+    /**
+     * Take damages, it will destory if health less than 0.
+     * */
+    public bool takeDamage(int dmg)
+    {
+        health -= dmg;
+        return health <= 0;
     }
 }

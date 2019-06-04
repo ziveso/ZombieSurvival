@@ -19,10 +19,12 @@ public class Spawner : MonoBehaviour
         //Fetch the size of the Collider volume
         m_Size = m_Collider.bounds.size * 9 / 10;
 
+        /**
         Instantiate(zombie, new Vector3(-45, 1, -45), Quaternion.identity);
         Instantiate(zombie, new Vector3(45, 1, 45), Quaternion.identity);
         Instantiate(zombie, new Vector3(45, 1, -45), Quaternion.identity);
         Instantiate(zombie, new Vector3(-45, 1, 45), Quaternion.identity);
+    */
     }
 
     // Update is called once per frame
