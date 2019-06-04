@@ -6,12 +6,13 @@ public class ZombieController : MonoBehaviour
 {
     private int health;
     private float movespeed = 1f;
-    public Player player;
+    public GameObject player;
     
     // Start is called before the first frame update
     void Start()
     {
         health = 100;
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -19,10 +20,8 @@ public class ZombieController : MonoBehaviour
     {
         float step = movespeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
-        
-        Vector3 targetDir = (player.transform.position - transform.position);
 
-        Debug.Log(targetDir);
+        Vector3 targetDir = (player.transform.position - transform.position);
 
         float rstep = 10f * Time.deltaTime;
 
