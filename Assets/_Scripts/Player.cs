@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     //Bullet asset
     public GameObject Bullet;
-    public float BulletForce = 100f;
+    public float BulletForce = 1f;
 
     //Attached camera
     private Camera playerCam;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         //Shooty bits
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
         {
-            GameObject temp = Instantiate(Bullet, transform.position, transform.rotation);
+            GameObject temp = Instantiate(Bullet, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), transform.rotation);
             temp.GetComponent<Rigidbody>().velocity = transform.forward * BulletForce;
         }
 
