@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     public float MoveSpeed = 10;
     public float TurnRate = 2f;
 
+    //For animation
+    Animator animator;
+    bool isRunning;
+
     //Bullet asset
     public GameObject Bullet;
     public float BulletForce = 100f;
@@ -21,6 +25,8 @@ public class Player : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerCam = GetComponentInChildren<Camera>();
+        animator = GetComponent<Animator>();
+        isRunning = false;
     }
 
     // Update is called once per frame
@@ -28,6 +34,23 @@ public class Player : MonoBehaviour
     {
         //FPS Controller movement
         transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if( !isRunning )
+            {
+                isRunning = true;
+                animator.SetTrigger("Run");
+            }
+        }
+        else
+        {
+            if ( isRunning )
+            {
+                isRunning = false;
+                animator.SetTrigger("Idle");
+            }
+        }
 
         //Mouse movement
         Vector2 md = new Vector2(Input.GetAxisRaw("Mouse X") * TurnRate, Input.GetAxisRaw("Mouse Y") * TurnRate);
@@ -42,6 +65,8 @@ public class Player : MonoBehaviour
             GameObject temp = Instantiate(Bullet, transform.position, transform.rotation);
             temp.GetComponent<Rigidbody>().velocity = transform.forward * BulletForce;
         }
+
+
 
     }
 
