@@ -185,7 +185,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 40'
+  m_Text: 'Score: 0'
 --- !u!222 &132198330
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1572,6 +1572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302100325419343166, guid: 3614291faab4da04f9b43ce3edfa0d64,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Score: 0'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3614291faab4da04f9b43ce3edfa0d64, type: 3}
