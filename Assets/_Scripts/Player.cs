@@ -82,4 +82,9 @@ public class Player : MonoBehaviour
         ScoreBoard.text = "Score: " + score;
     }
 
+    public void ResetScore()
+    {
+        score = 0;
+        ScoreBoard.text = "Score: " + score;
+    }
 }
