@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class Player : MonoBehaviour
 
     //Attached camera
     private Camera playerCam;
+
+    //Scoring
+    private static int score = 0;
+    public Text ScoreBoard;
+    private int SCORE_PER_KILL = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -70,8 +76,12 @@ public class Player : MonoBehaviour
             temp.GetComponent<Rigidbody>().velocity = transform.forward * BulletForce;
         }
 
+    }
 
-
+    public void AddKillScore()
+    {
+        score += SCORE_PER_KILL;
+        ScoreBoard.text = "Score: " + score;
     }
 
 }
