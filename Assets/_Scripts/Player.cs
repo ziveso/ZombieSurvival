@@ -48,13 +48,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-
-        //FPS Controller movement
-        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
-
         //Animations
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -90,6 +85,14 @@ public class Player : MonoBehaviour
                 status = IDLE;
             }
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        //FPS Controller movement
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
 
         //Mouse movement
         Vector2 md = new Vector2(Input.GetAxisRaw("Mouse X") * TurnRate, Input.GetAxisRaw("Mouse Y") * TurnRate);
