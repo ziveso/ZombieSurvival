@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
     private int SCORE_PER_KILL = 10;
     private int GOAL_SCORE = 100;
 
+    //Jumping
+    public float jumpSpeed = 10f;
+    public bool isGrounded;
+    Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         isRunning = false;
         scoremanager.SetScore(0);
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -68,6 +74,13 @@ public class Player : MonoBehaviour
 
         playerCam.transform.Rotate(new Vector3(-md.y, 0f, 0f));
         playerCam.transform.rotation.eulerAngles.Set(0f, Mathf.Clamp(transform.rotation.eulerAngles.y, -90f, 90f), 0f);
+
+        //Jumping
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(new Vector3(0, 1, 0) * jumpSpeed, ForceMode.Impulse);
+            isGrounded = false;
+        }
 
         //Shooty bits
         if (Input.GetMouseButtonDown(0)) //button 0 is left click and 1 is right click
@@ -103,6 +116,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Died");
             SceneManager.LoadScene(2);
+        }
+
+        if (collision.gameObject.tag.Equals("Ground") && isGrounded == false)
+        {
+            isGrounded = true;
         }
     }
 
