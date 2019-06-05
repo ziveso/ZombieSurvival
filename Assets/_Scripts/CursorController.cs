@@ -11,9 +11,4 @@ public class CursorController : MonoBehaviour
         Cursor.visible = this.visible;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

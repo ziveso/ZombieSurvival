@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -22,13 +23,14 @@ public class Player : MonoBehaviour
     private Camera playerCam;
 
     //Scoring
-    private static int score = 0;
+    private ScoreManager scoremanager;
     public Text ScoreBoard;
     private int SCORE_PER_KILL = 10;
 
     // Start is called before the first frame update
     void Start()
     {
+        scoremanager = new ScoreManager();
         Cursor.lockState = CursorLockMode.Locked;
         playerCam = GetComponentInChildren<Camera>();
         animator = GetComponent<Animator>();
@@ -78,13 +80,24 @@ public class Player : MonoBehaviour
 
     public void AddKillScore()
     {
-        score += SCORE_PER_KILL;
-        ScoreBoard.text = "Score: " + score;
+        scoremanager.AddScore(SCORE_PER_KILL);
+        ScoreBoard.text = "Score: " + scoremanager.GetScore();
     }
 
     public void ResetScore()
     {
-        score = 0;
-        ScoreBoard.text = "Score: " + score;
+        scoremanager.SetScore(0);
+        ScoreBoard.text = "Score: " + scoremanager.GetScore();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("Hit something");
+        if (collision.gameObject.tag.Equals("Zombie"))
+        {
+            Debug.Log("Died");
+            SceneManager.LoadScene(2);
+        }
+    }
+
 }
