@@ -13,7 +13,10 @@ public class Player : MonoBehaviour
 
     //For animation
     Animator animator;
-    bool isRunning;
+    int status = 0;
+    int IDLE = 0;
+    int RUNNING = 1;
+    int RUNNING_BACKWARD = 2;
 
     //Bullet asset
     public GameObject Bullet;
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerCam = GetComponentInChildren<Camera>();
         animator = GetComponent<Animator>();
-        isRunning = false;
+        status = IDLE;
         scoremanager.SetScore(0);
         rb = GetComponent<Rigidbody>();
     }
@@ -48,23 +51,44 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //FPS Controller movement
-        transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+
+        //FPS Controller movement
+        transform.Translate(new Vector3(horizontal, 0f, vertical) * MoveSpeed * Time.deltaTime, Space.Self);
+
+        //Animations
+        if (vertical == 1)
         {
-            if( !isRunning )
+            if (status != RUNNING)
             {
                 animator.SetTrigger("Run");
-                isRunning = true;
+                status = RUNNING;
+            }
+        }
+        else if (vertical == -1)
+        {
+            if (status != RUNNING_BACKWARD)
+            {
+                animator.SetTrigger("RunBack");
+                status = RUNNING_BACKWARD;
+            }
+        }
+        else if (horizontal != 0)
+        {
+            if (status != RUNNING)
+            {
+                animator.SetTrigger("Run");
+                status = RUNNING;
             }
         }
         else
         {
-            if ( isRunning )
+            if (status != IDLE)
             {
                 animator.SetTrigger("Idle");
-                isRunning = false;
+                status = IDLE;
             }
         }
 
