@@ -21,13 +21,7 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
-        {
-            animator.SetTrigger("Dead");
-            player.GetComponent<Player>().AddKillScore();
-            Destroy(gameObject);
-        }
-        else
+        if (health > 0)
         {
             float step = movespeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
@@ -39,6 +33,26 @@ public class ZombieController : MonoBehaviour
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rstep, 1);
 
             transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
+        }
+    }
+
+    private int deadAnimation = 60 * 2;
+    private bool isScore = false;
+    private void FixedUpdate()
+    {
+        if (health <= 0)
+        {
+            if (!isScore)
+            {
+                player.GetComponent<Player>().AddKillScore();
+                isScore = !isScore;
+                animator.SetTrigger("Dead");
+            }
+            deadAnimation--;
+            if (deadAnimation <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
