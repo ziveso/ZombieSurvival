@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieController : MonoBehaviour
 {
     private int health;
-    private float movespeed = 1f;
+    private float movespeed = 2f;
     private GameObject player;
 
     Animator animator;
@@ -42,11 +42,20 @@ public class ZombieController : MonoBehaviour
     {
         if (health <= 0)
         {
+            // should be run at once
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.detectCollisions = false;
+            GetComponent<BoxCollider>().enabled = false;
             if (!isScore)
             {
+
+                // add score
                 player.GetComponent<Player>().AddKillScore();
-                isScore = !isScore;
+
+                // animation
                 animator.SetTrigger("Dead");
+
+                isScore = !isScore;
             }
             deadAnimation--;
             if (deadAnimation <= 0)
