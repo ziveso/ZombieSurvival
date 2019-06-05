@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
@@ -10,6 +8,8 @@ public class Spawner : MonoBehaviour
     Vector3 m_Size;
     public int spawntime = 5;
     int countdown;
+
+    int spawnFarRadius = 5;
 
     void Start()
     {
@@ -27,15 +27,17 @@ public class Spawner : MonoBehaviour
 
         if (countdown == 0)
         {
-            Debug.Log(player.GetComponent<Player>().transform.position);
+            Vector3 playerPosition = player.GetComponent<Player>().transform.position;
             // first random x axis
-            float x_size = m_Size.x / 2;
-            float x = Random.Range(-x_size, x_size);
-
-            // random z axis
-            float z_size = m_Size.z / 2;
-            float z = Random.Range(-z_size, x_size);
-
+            float x;
+            float z;
+            do
+            {
+                float x_size = m_Size.x / 2;
+                x = Random.Range(-x_size, x_size);
+                float z_size = m_Size.z / 2;
+                z = Random.Range(-z_size, x_size);
+            } while ((Mathf.Abs(playerPosition.x - x) <= 10) && (Mathf.Abs(playerPosition.z - z) <= 10));
 
             Instantiate(zombie, new Vector3(x, 0, z), Quaternion.identity);
 

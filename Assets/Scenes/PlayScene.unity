@@ -770,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a891d5e9c716fa244ab0b4239d2d417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 521609561}
   zombie: {fileID: 1706068917, guid: e2794e78dc0c473418525f43435b8ff3, type: 3}
   spawntime: 5
 --- !u!1 &521609561 stripped
@@ -811,6 +812,8 @@ MonoBehaviour:
   Bullet: {fileID: 8975346498160723598, guid: 62bf2ad656e80434a95c4f060870ff53, type: 3}
   BulletForce: 100
   ScoreBoard: {fileID: 132198329}
+  jumpSpeed: 10
+  isGrounded: 0
 --- !u!4 &521609565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: cf3910b7639e12447827e45f63f60201,
@@ -1692,6 +1695,8 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletForce: 100
   ScoreBoard: {fileID: 0}
+  jumpSpeed: 10
+  isGrounded: 0
 --- !u!1 &1106555489
 GameObject:
   m_ObjectHideFlags: 0
