@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     private Camera playerCam;
 
     //Scoring
-    private ScoreManager scoremanager;
     public Text ScoreBoard;
     private int SCORE_PER_KILL = 10;
     private int GOAL_SCORE = 100;
@@ -41,12 +40,11 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoremanager = new ScoreManager();
         Cursor.lockState = CursorLockMode.Locked;
         playerCam = GetComponentInChildren<Camera>();
         animator = GetComponent<Animator>();
         status = IDLE;
-        scoremanager.SetScore(0);
+        ScoreManager.SetScore(0);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -54,13 +52,12 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
         //FPS Controller movement
         transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
 
         //Animations
+        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
         if (vertical == 1)
         {
             if (status != RUNNING)
@@ -97,7 +94,6 @@ public class Player : MonoBehaviour
         //Mouse movement
         Vector2 md = new Vector2(Input.GetAxisRaw("Mouse X") * TurnRate, Input.GetAxisRaw("Mouse Y") * TurnRate);
         transform.Rotate(new Vector3(0f, md.x, 0f));
-
         playerCam.transform.Rotate(new Vector3(-md.y, 0f, 0f));
         playerCam.transform.rotation.eulerAngles.Set(0f, Mathf.Clamp(transform.rotation.eulerAngles.y, -90f, 90f), 0f);
 
@@ -130,9 +126,9 @@ public class Player : MonoBehaviour
 
     public void AddKillScore()
     {
-        scoremanager.AddScore(SCORE_PER_KILL);
-        ScoreBoard.text = "Score: " + scoremanager.GetScore();
-        if (scoremanager.GetScore() >= GOAL_SCORE)
+        ScoreManager.AddScore(SCORE_PER_KILL);
+        ScoreBoard.text = "Score: " + ScoreManager.GetScore();
+        if(ScoreManager.GetScore() >= GOAL_SCORE)
         {
             SceneManager.LoadScene(3);
         }
@@ -140,8 +136,8 @@ public class Player : MonoBehaviour
 
     public void ResetScore()
     {
-        scoremanager.SetScore(0);
-        ScoreBoard.text = "Score: " + scoremanager.GetScore();
+        ScoreManager.SetScore(0);
+        ScoreBoard.text = "Score: " + ScoreManager.GetScore();
     }
 
     private void OnCollisionEnter(Collision collision)
