@@ -16,12 +16,6 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("Ground"))
