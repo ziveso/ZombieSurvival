@@ -61,7 +61,7 @@ public class ZombieController : MonoBehaviour
         {
             // should be run at once
             Rigidbody rb = GetComponent<Rigidbody>();
-            rb.detectCollisions = false;
+            rb.isKinematic = true;
             GetComponent<BoxCollider>().enabled = false;
             if (!isScore)
             {
