@@ -52,13 +52,12 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
         //FPS Controller movement
         transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
 
         //Animations
+        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
         if (vertical == 1)
         {
             if (status != RUNNING)
