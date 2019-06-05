@@ -10,10 +10,13 @@ public class Bullet : MonoBehaviour
     public float ExlposionForce = 600f;
     private Rigidbody rb;
 
+    ParticleSystem emit;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ParticleSystem system = GetComponent<ParticleSystem>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,8 +28,17 @@ public class Bullet : MonoBehaviour
                 ZombieController zombie = collision.gameObject.GetComponent<ZombieController>() as ZombieController;
                 zombie.takeDamage(50);
             }
+            //DetachParticles();
             Destroy(gameObject);
         }
+    }
+
+    public void DetachParticles()
+    {
+        // This splits the particle off so it doesn't get deleted with the parent
+        emit.transform.parent = null;
+        // this stops the particle from creating more bits
+        emit.emissionRate = 0;
     }
 
 }

@@ -11,8 +11,7 @@ public class ResultScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreManager scmn = new ScoreManager();
-        ScoreBoard.text = "Your Score: "+ scmn.GetScore();
+        ScoreBoard.text = "Your Score: "+ ScoreManager.GetScore();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
