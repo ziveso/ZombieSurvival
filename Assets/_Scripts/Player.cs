@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
 
         //FPS Controller movement
-        transform.Translate(new Vector3(horizontal, 0f, vertical) * MoveSpeed * Time.deltaTime, Space.Self);
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * MoveSpeed * Time.deltaTime, Space.Self);
 
         //Animations
         if (vertical == 1)
