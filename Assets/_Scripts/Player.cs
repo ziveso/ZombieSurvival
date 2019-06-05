@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -35,6 +33,10 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 10f;
     public bool isGrounded;
     Rigidbody rb;
+
+    // better jump
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +101,15 @@ public class Player : MonoBehaviour
         playerCam.transform.Rotate(new Vector3(-md.y, 0f, 0f));
         playerCam.transform.rotation.eulerAngles.Set(0f, Mathf.Clamp(transform.rotation.eulerAngles.y, -90f, 90f), 0f);
 
+
+        // jump improve
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector3.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
         //Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -121,7 +132,7 @@ public class Player : MonoBehaviour
     {
         scoremanager.AddScore(SCORE_PER_KILL);
         ScoreBoard.text = "Score: " + scoremanager.GetScore();
-        if(scoremanager.GetScore() >= GOAL_SCORE)
+        if (scoremanager.GetScore() >= GOAL_SCORE)
         {
             SceneManager.LoadScene(3);
         }
