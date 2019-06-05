@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         playerCam = GetComponentInChildren<Camera>();
         animator = GetComponent<Animator>();
         isRunning = false;
+        scoremanager.SetScore(0);
     }
 
     // Update is called once per frame
@@ -48,16 +49,16 @@ public class Player : MonoBehaviour
         {
             if( !isRunning )
             {
-                isRunning = true;
                 animator.SetTrigger("Run");
+                isRunning = true;
             }
         }
         else
         {
             if ( isRunning )
             {
-                isRunning = false;
                 animator.SetTrigger("Idle");
+                isRunning = false;
             }
         }
 
