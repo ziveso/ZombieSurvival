@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class ZombieController : MonoBehaviour
 {
     private int health;
     private float movespeed = 2f;
     private GameObject player;
+    private TextMeshPro text;
 
     Animator animator;
 
@@ -14,6 +16,8 @@ public class ZombieController : MonoBehaviour
         health = 100;
         player = GameObject.Find("Player");
         animator = GetComponent<Animator>();
+        text = GetComponentInChildren<TextMeshPro>();
+        SetHPText(health.ToString());
     }
 
     // Update is called once per frame
@@ -31,7 +35,22 @@ public class ZombieController : MonoBehaviour
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rstep, 1);
 
             transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
+            text.SetText(health.ToString());
         }
+        else
+        {
+            text.SetText("");
+        }
+        
+    }
+
+    void SetHPText(string text)
+    {
+        if(text == this.text.text)
+        {
+            return;
+        }
+        this.text.SetText(text);
     }
 
     private int deadAnimation = 60 * 2;
@@ -46,13 +65,12 @@ public class ZombieController : MonoBehaviour
             GetComponent<BoxCollider>().enabled = false;
             if (!isScore)
             {
-
                 // add score
                 player.GetComponent<Player>().AddKillScore();
 
                 // animation
                 animator.SetTrigger("Dead");
-
+                
                 isScore = !isScore;
             }
             deadAnimation--;
