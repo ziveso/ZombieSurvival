@@ -28,17 +28,9 @@ public class Bullet : MonoBehaviour
                 ZombieController zombie = collision.gameObject.GetComponent<ZombieController>() as ZombieController;
                 zombie.takeDamage(50);
             }
-            //DetachParticles();
-            Destroy(gameObject);
+            gameObject.transform.position = new Vector3(0,-99999,0);
+            Destroy(gameObject,3);
         }
-    }
-
-    public void DetachParticles()
-    {
-        // This splits the particle off so it doesn't get deleted with the parent
-        emit.transform.parent = null;
-        // this stops the particle from creating more bits
-        emit.emissionRate = 0;
     }
 
 }
