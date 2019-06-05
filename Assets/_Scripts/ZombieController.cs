@@ -3,17 +3,17 @@ using TMPro;
 
 public class ZombieController : MonoBehaviour
 {
-    private int health;
+    public int health;
     private float movespeed = 2f;
     private GameObject player;
     private TextMeshPro text;
+    public int SCORE_PER_KILL = 10;
 
     Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
         player = GameObject.Find("Player");
         animator = GetComponent<Animator>();
         text = GetComponentInChildren<TextMeshPro>();
@@ -66,7 +66,7 @@ public class ZombieController : MonoBehaviour
             if (!isScore)
             {
                 // add score
-                player.GetComponent<Player>().AddKillScore();
+                player.GetComponent<Player>().AddKillScore(SCORE_PER_KILL);
 
                 // animation
                 animator.SetTrigger("Dead");

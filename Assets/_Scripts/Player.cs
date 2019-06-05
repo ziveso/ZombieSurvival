@@ -25,8 +25,7 @@ public class Player : MonoBehaviour
 
     //Scoring
     public Text ScoreBoard;
-    private int SCORE_PER_KILL = 10;
-    private int GOAL_SCORE = 100;
+    private int GOAL_SCORE = 200;
 
     //Jumping
     public float jumpSpeed = 10f;
@@ -127,7 +126,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void AddKillScore()
+    public void AddKillScore(int SCORE_PER_KILL)
     {
         ScoreManager.AddScore(SCORE_PER_KILL);
         ScoreBoard.text = "Score: " + ScoreManager.GetScore();

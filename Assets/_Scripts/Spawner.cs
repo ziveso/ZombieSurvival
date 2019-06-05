@@ -4,6 +4,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject player;
     public GameObject zombie;
+    public GameObject boss;
     Collider m_Collider;
     Vector3 m_Size;
     public int spawntime = 5;
@@ -21,10 +22,18 @@ public class Spawner : MonoBehaviour
         m_Size = m_Collider.bounds.size * 9 / 10;
     }
 
+    private bool isBossSpawn = false;
     private void FixedUpdate()
     {
+        if (ScoreManager.GetScore() == 100)
+        {
+            if (!isBossSpawn)
+            {
+                Instantiate(boss, new Vector3(0, 0, 0), Quaternion.identity);
+                isBossSpawn = true;
+            }
+        }
         // let spawn it randomly on the map
-
         if (countdown == 0)
         {
             Vector3 playerPosition = player.GetComponent<Player>().transform.position;
