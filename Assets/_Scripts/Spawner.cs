@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public GameObject player;
     public GameObject zombie;
     Collider m_Collider;
     Vector3 m_Size;
@@ -20,18 +21,13 @@ public class Spawner : MonoBehaviour
         m_Size = m_Collider.bounds.size * 9 / 10;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         // let spawn it randomly on the map
 
         if (countdown == 0)
         {
+            Debug.Log(player.GetComponent<Player>().transform.position);
             // first random x axis
             float x_size = m_Size.x / 2;
             float x = Random.Range(-x_size, x_size);

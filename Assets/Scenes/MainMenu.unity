@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1265567385, guid: e2794e78dc0c473418525f43435b8ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1376953449294870080, guid: e2794e78dc0c473418525f43435b8ff3,
         type: 3}
       propertyPath: m_IsActive
@@ -846,6 +850,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1265567385, guid: e2794e78dc0c473418525f43435b8ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1376953449294870080, guid: e2794e78dc0c473418525f43435b8ff3,
         type: 3}
       propertyPath: m_IsActive
@@ -1054,6 +1062,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1265567385, guid: e2794e78dc0c473418525f43435b8ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1376953449294870080, guid: e2794e78dc0c473418525f43435b8ff3,
         type: 3}
       propertyPath: m_IsActive
@@ -1211,6 +1223,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265567385, guid: e2794e78dc0c473418525f43435b8ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1376953449294870080, guid: e2794e78dc0c473418525f43435b8ff3,
         type: 3}
