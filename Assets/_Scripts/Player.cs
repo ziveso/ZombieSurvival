@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private ScoreManager scoremanager;
     public Text ScoreBoard;
     private int SCORE_PER_KILL = 10;
+    private int GOAL_SCORE = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -82,6 +83,10 @@ public class Player : MonoBehaviour
     {
         scoremanager.AddScore(SCORE_PER_KILL);
         ScoreBoard.text = "Score: " + scoremanager.GetScore();
+        if(scoremanager.GetScore() >= GOAL_SCORE)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     public void ResetScore()
