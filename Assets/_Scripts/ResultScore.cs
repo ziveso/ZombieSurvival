@@ -13,5 +13,7 @@ public class ResultScore : MonoBehaviour
     {
         ScoreManager scmn = new ScoreManager();
         ScoreBoard.text = "Your Score: "+ scmn.GetScore();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
