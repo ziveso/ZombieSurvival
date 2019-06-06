@@ -941,10 +941,15 @@ MonoBehaviour:
   health: 100
   SCORE_PER_KILL: 10
   SpawnSound: {fileID: 8300000, guid: d7b980d6ae1b6b146958b019ab460bb3, type: 3}
-  DieSound1: {fileID: 8300000, guid: 520ffdbea7b19ba43b66356e940fc7ae, type: 3}
-  DieSound2: {fileID: 8300000, guid: b1167653b108f7846bbceafe2081b91a, type: 3}
-  DieSound3: {fileID: 8300000, guid: 23e2705a6259b62409cec70e93bda7e6, type: 3}
-  DieSound4: {fileID: 8300000, guid: 1ebcfbf5e2431e948b02df832a72c739, type: 3}
+  DieSounds:
+  - {fileID: 8300000, guid: 520ffdbea7b19ba43b66356e940fc7ae, type: 3}
+  - {fileID: 8300000, guid: b1167653b108f7846bbceafe2081b91a, type: 3}
+  - {fileID: 8300000, guid: 23e2705a6259b62409cec70e93bda7e6, type: 3}
+  - {fileID: 8300000, guid: 1ebcfbf5e2431e948b02df832a72c739, type: 3}
+  - {fileID: 8300000, guid: 14e51eb82633ec54e9e166096927e2a6, type: 3}
+  - {fileID: 8300000, guid: 85625a0c89d19514b867a5a06d453c46, type: 3}
+  - {fileID: 8300000, guid: 1dc144b417f8b804b95567702bb7e679, type: 3}
+  - {fileID: 8300000, guid: e59dc06fc81cfc94f80e16d9886d4be2, type: 3}
   GoneSound: {fileID: 8300000, guid: b5cb27ddebae8444293036aea11f1329, type: 3}
 --- !u!65 &1766574038
 BoxCollider:

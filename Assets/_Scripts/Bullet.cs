@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
     public float ExlposionForce = 600f;
     private Rigidbody rb;
 
+    //Audio sources
+    public AudioClip[] ShootSounds;
+    AudioSource audio;
+    bool dieSoundPlayed = false;
+
     ParticleSystem emit;
 
     // Start is called before the first frame update
@@ -17,6 +22,10 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         ParticleSystem system = GetComponent<ParticleSystem>();
+        audio = GetComponent<AudioSource>();
+        //AudioClip[] audioClips = { ShootSound1 , ShootSound2 , ShootSound3 , ShootSound4 , ShootSound5 , ShootSound6 , ShootSound7 };
+        int randomed = Random.Range(0, ShootSounds.Length - 1);
+        audio.PlayOneShot(ShootSounds[randomed]);
     }
 
     private void OnCollisionEnter(Collision collision)

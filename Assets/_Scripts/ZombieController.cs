@@ -13,10 +13,7 @@ public class ZombieController : MonoBehaviour
 
     //Audio sources
     public AudioClip SpawnSound;
-    public AudioClip DieSound1;
-    public AudioClip DieSound2;
-    public AudioClip DieSound3;
-    public AudioClip DieSound4;
+    public AudioClip[] DieSounds;
     public AudioClip GoneSound;
     AudioSource audio;
     bool dieSoundPlayed = false;
@@ -54,23 +51,10 @@ public class ZombieController : MonoBehaviour
             text.SetText("");
             if (!dieSoundPlayed)
             {
-                int randomed = Random.Range(0, 4);
-                switch (randomed)
+                int randomed = Random.Range(0, DieSounds.Length);
+                if(randomed != DieSounds.Length)
                 {
-                    case 1:
-                        audio.PlayOneShot(DieSound1);
-                        break;
-                    case 2:
-                        audio.PlayOneShot(DieSound2);
-                        break;
-                    case 3:
-                        audio.PlayOneShot(DieSound3);
-                        break;
-                    case 4:
-                        audio.PlayOneShot(DieSound4);
-                        break;
-                    default:
-                        break;
+                    audio.PlayOneShot(DieSounds[randomed]);
                 }
                 dieSoundPlayed = true;
             }
