@@ -11,6 +11,16 @@ public class ZombieController : MonoBehaviour
 
     Animator animator;
 
+    //Audio sources
+    public AudioClip SpawnSound;
+    public AudioClip DieSound1;
+    public AudioClip DieSound2;
+    public AudioClip DieSound3;
+    public AudioClip DieSound4;
+    public AudioClip GoneSound;
+    AudioSource audio;
+    bool dieSoundPlayed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +28,8 @@ public class ZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         text = GetComponentInChildren<TextMeshPro>();
         SetHPText(health.ToString());
+        audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(SpawnSound);
     }
 
     // Update is called once per frame
@@ -40,6 +52,28 @@ public class ZombieController : MonoBehaviour
         else
         {
             text.SetText("");
+            if (!dieSoundPlayed)
+            {
+                int randomed = Random.Range(0, 4);
+                switch (randomed)
+                {
+                    case 1:
+                        audio.PlayOneShot(DieSound1);
+                        break;
+                    case 2:
+                        audio.PlayOneShot(DieSound2);
+                        break;
+                    case 3:
+                        audio.PlayOneShot(DieSound3);
+                        break;
+                    case 4:
+                        audio.PlayOneShot(DieSound4);
+                        break;
+                    default:
+                        break;
+                }
+                dieSoundPlayed = true;
+            }
         }
         
     }
@@ -74,7 +108,11 @@ public class ZombieController : MonoBehaviour
                 isScore = !isScore;
             }
             deadAnimation--;
-            if (deadAnimation <= 0)
+            if (deadAnimation == 10)
+            {
+                audio.PlayOneShot(GoneSound);
+            }
+                if (deadAnimation <= 0)
             {
                 Destroy(gameObject);
             }
