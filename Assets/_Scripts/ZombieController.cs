@@ -11,6 +11,13 @@ public class ZombieController : MonoBehaviour
 
     Animator animator;
 
+    //Audio sources
+    public AudioClip SpawnSound;
+    public AudioClip[] DieSounds;
+    public AudioClip GoneSound;
+    AudioSource audio;
+    bool dieSoundPlayed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +25,8 @@ public class ZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         text = GetComponentInChildren<TextMeshPro>();
         SetHPText(health.ToString());
+        audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(SpawnSound);
     }
 
     // Update is called once per frame
@@ -40,6 +49,15 @@ public class ZombieController : MonoBehaviour
         else
         {
             text.SetText("");
+            if (!dieSoundPlayed)
+            {
+                int randomed = Random.Range(0, DieSounds.Length);
+                if(randomed != DieSounds.Length)
+                {
+                    audio.PlayOneShot(DieSounds[randomed]);
+                }
+                dieSoundPlayed = true;
+            }
         }
         
     }
@@ -74,7 +92,11 @@ public class ZombieController : MonoBehaviour
                 isScore = !isScore;
             }
             deadAnimation--;
-            if (deadAnimation <= 0)
+            if (deadAnimation == 10)
+            {
+                audio.PlayOneShot(GoneSound);
+            }
+                if (deadAnimation <= 0)
             {
                 Destroy(gameObject);
             }
