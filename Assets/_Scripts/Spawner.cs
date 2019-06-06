@@ -4,35 +4,26 @@ public class Spawner : MonoBehaviour
 {
     public GameObject player;
     public GameObject zombie;
-    public GameObject boss;
-    Collider m_Collider;
-    Vector3 m_Size;
+    public Collider m_Collider;
+    private Vector3 m_Size;
+    
+    // spawn time
     public int spawntime = 5;
-    int countdown;
+    private int countdown;
 
-    int spawnFarRadius = 5;
+    // this will make zombie will not be spawn at player
+    public int spawnFarRadius = 5;
 
     void Start()
     {
         countdown = spawntime * 60;
-        //Fetch the Collider from the GameObject
-        m_Collider = GetComponent<Collider>();
 
         //Fetch the size of the Collider volume
         m_Size = m_Collider.bounds.size * 9 / 10;
     }
-
-    private bool isBossSpawn = false;
+    
     private void FixedUpdate()
     {
-        if (ScoreManager.GetScore() == 100)
-        {
-            if (!isBossSpawn)
-            {
-                Instantiate(boss, new Vector3(0, 0, 0), Quaternion.identity);
-                isBossSpawn = true;
-            }
-        }
         // let spawn it randomly on the map
         if (countdown == 0)
         {
