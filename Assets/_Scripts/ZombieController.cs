@@ -51,11 +51,8 @@ public class ZombieController : MonoBehaviour
             text.SetText("");
             if (!dieSoundPlayed)
             {
-                int randomed = Random.Range(0, DieSounds.Length);
-                if(randomed != DieSounds.Length)
-                {
-                    audio.PlayOneShot(DieSounds[randomed]);
-                }
+                int randomed = Random.Range(0, DieSounds.Length - 1);
+                audio.PlayOneShot(DieSounds[randomed]);
                 dieSoundPlayed = true;
             }
         }

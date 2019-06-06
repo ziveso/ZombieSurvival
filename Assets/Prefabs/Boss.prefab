@@ -942,8 +942,8 @@ MonoBehaviour:
   SCORE_PER_KILL: 50
   SpawnSound: {fileID: 8300000, guid: 712ab2eedcc1c724abe354c8da8bb971, type: 3}
   DieSounds:
-  - {fileID: 0}
-  GoneSound: {fileID: 8300000, guid: b5ad15ceb2ec1884c8688521f265c5bb, type: 3}
+  - {fileID: 8300000, guid: b5ad15ceb2ec1884c8688521f265c5bb, type: 3}
+  GoneSound: {fileID: 8300000, guid: b5cb27ddebae8444293036aea11f1329, type: 3}
 --- !u!65 &1766574038
 BoxCollider:
   m_ObjectHideFlags: 0
