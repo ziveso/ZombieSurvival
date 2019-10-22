@@ -1,6 +1,6 @@
-# Unity3D Zombie Survival
+# Unity3D Zombie Survival Game
 ### Survive until the end to win!
-Try to kill all the zombie and avoid from being touched
+Try to kill all the zombies and avoid from being touched.
 
 ## Gameplay
 - Every 5 seconds, a zombie will be spawn in the map far enough from the player.
@@ -18,6 +18,7 @@ Use keyboard to control as the player.
 - Shooting - left click
 
 ## In this prototype
+In this prototype these are the win conditions.
 - Player wins the game by exceeding 200 points
 - Player loses the game if touched by the zombie
 
