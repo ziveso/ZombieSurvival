@@ -11,7 +11,8 @@ Try to kill all the zombie and avoid from being touched
 - Each boss zombie contains 1000 HP and gives 50 points when killed.
 
 ## Controls
-- Running - W, A, S, D and arrow keys
+Use keyboard to control as the player.
+- Running - W, A, S, D or arrow keys
 - Jumping - Space bar
 - Camera controlling - mouse movement
 - Shooting - left click
